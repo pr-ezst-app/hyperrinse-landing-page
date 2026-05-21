@@ -55,12 +55,12 @@ const team = ["Gavin", "Nigel", "Aidan", "Mikail"];
 const Index = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [form, setForm] = useState({ name: "", contact: "", message: "" });
+  const [form, setForm] = useState({ name: "", contact: "", service: "", hose: "", message: "" });
 
   const handleSend = () => {
     const subject = encodeURIComponent(`Car Wash Request from ${form.name || "a customer"}`);
     const body = encodeURIComponent(
-      `Name: ${form.name}\nContact: ${form.contact}\n\nMessage:\n${form.message}`
+      `Name: ${form.name}\nContact: ${form.contact}\nService: ${form.service}\nHas a hose: ${form.hose}\n\nMessage:\n${form.message}`
     );
     window.location.href = `mailto:hyper.rinse2025@gmail.com?subject=${subject}&body=${body}`;
   };
@@ -380,7 +380,32 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label className="text-sm font-medium mb-1.5 block">What do you need?</label>
+                <label className="text-sm font-medium mb-1.5 block">Service needed</label>
+                <select
+                  value={form.service}
+                  onChange={(e) => setForm({ ...form, service: e.target.value })}
+                  className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"
+                >
+                  <option value="">Select a service...</option>
+                  <option value="Car Wash">Car Wash</option>
+                  <option value="Driveway Shoveling">Driveway Shoveling</option>
+                  <option value="Leaf Raking & Bagging">Leaf Raking & Bagging</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-sm font-medium mb-1.5 block">Do you have a hose?</label>
+                <select
+                  value={form.hose}
+                  onChange={(e) => setForm({ ...form, hose: e.target.value })}
+                  className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"
+                >
+                  <option value="">Select an option...</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-sm font-medium mb-1.5 block">Anything else?</label>
                 <textarea
                   rows={4}
                   placeholder="Car wash, leaf raking, shoveling..."
