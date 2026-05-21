@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
-const HERO_IMG = "https://cdn.ezst.app/projects/7c172628-ad27-4056-ae59-d74bdc35a937/files/0cfd9cae-5f4f-4512-a742-67935e2abaa8.jpg";
+const HERO_IMG = "https://cdn.ezst.app/projects/7c172628-ad27-4056-ae59-d74bdc35a937/files/006433a3-d805-4a7c-9e42-7d950df6413a.jpg";
 
 const navLinks = ["Services", "About", "Pricing", "Contact", "FAQ"];
 
@@ -55,6 +55,15 @@ const team = ["Gavin", "Nigel", "Aidan", "Mikail"];
 const Index = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [form, setForm] = useState({ name: "", contact: "", message: "" });
+
+  const handleSend = () => {
+    const subject = encodeURIComponent(`Car Wash Request from ${form.name || "a customer"}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nContact: ${form.contact}\n\nMessage:\n${form.message}`
+    );
+    window.location.href = `mailto:hyper.rinse2025@gmail.com?subject=${subject}&body=${body}`;
+  };
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -355,6 +364,8 @@ const Index = () => {
                 <input
                   type="text"
                   placeholder="John Smith"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
                   className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"
                 />
               </div>
@@ -363,6 +374,8 @@ const Index = () => {
                 <input
                   type="text"
                   placeholder="your@email.com or (555) 000-0000"
+                  value={form.contact}
+                  onChange={(e) => setForm({ ...form, contact: e.target.value })}
                   className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"
                 />
               </div>
@@ -371,10 +384,15 @@ const Index = () => {
                 <textarea
                   rows={4}
                   placeholder="Car wash, leaf raking, shoveling..."
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
                   className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition resize-none"
                 />
               </div>
-              <button className="w-full bg-brand hover:bg-brand-dark text-white font-semibold py-3.5 rounded-xl transition-all hover:scale-[1.02] shadow-lg shadow-brand/25 mt-2">
+              <button
+                onClick={handleSend}
+                className="w-full bg-brand hover:bg-brand-dark text-white font-semibold py-3.5 rounded-xl transition-all hover:scale-[1.02] shadow-lg shadow-brand/25 mt-2"
+              >
                 Send Message
               </button>
             </div>
