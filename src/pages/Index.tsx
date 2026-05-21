@@ -438,16 +438,16 @@ const Index = () => {
           <p className="text-white/40 text-sm text-center">
             © {new Date().getFullYear()} HyperRinse. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            {navLinks.map((link) => (
-              <button
-                key={link}
-                onClick={() => scrollTo(link.toLowerCase())}
-                className="text-white/50 hover:text-white text-sm transition-colors"
-              >
-                {link}
-              </button>
-            ))}
+          <div className="flex items-center gap-6">
+            <a
+              href="https://www.instagram.com/hyperrinsetoronto"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-white/50 hover:text-brand transition-colors text-sm"
+            >
+              <Icon name="Instagram" size={18} />
+              @HyperRinseToronto
+            </a>
           </div>
         </div>
       </footer>
