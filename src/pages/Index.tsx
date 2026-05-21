@@ -144,7 +144,7 @@ const Index = () => {
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur text-white border border-white/20 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 fade-up">
               <Icon name="MapPin" size={13} />
-              We come to your driveway
+              Serving Leaside, Toronto
             </div>
             <h1 className="font-display text-5xl md:text-7xl font-extrabold text-white leading-[1.05] mb-6 fade-up fade-up-delay-1">
               Your car,<br />
