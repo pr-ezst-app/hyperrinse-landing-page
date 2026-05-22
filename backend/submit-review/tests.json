@@ -1,0 +1,21 @@
+{
+  "tests": [
+    {
+      "name": "Submit a valid review",
+      "method": "POST",
+      "path": "/",
+      "body": {"name": "Test User", "rating": 5, "message": "Great service!"},
+      "expectedStatus": 201,
+      "expectedBody": {"success": true},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Reject missing name",
+      "method": "POST",
+      "path": "/",
+      "body": {"name": "", "rating": 4, "message": "Good job"},
+      "expectedStatus": 400,
+      "bodyMatcher": "partial"
+    }
+  ]
+}
